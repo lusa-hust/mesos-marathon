@@ -1,0 +1,6 @@
+# vagrant settings
+.vagrant
+# compressed files
+*.tar.gz
+# virtual images
+*.box
