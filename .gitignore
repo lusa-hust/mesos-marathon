@@ -4,3 +4,5 @@
 *.tar.gz
 # virtual images
 *.box
+# temporaty files created by text editor
+*~
