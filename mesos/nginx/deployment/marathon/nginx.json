@@ -1,0 +1,28 @@
+{
+	"id": {{ app_id }},
+	"cpu": {{ app_cpu }},
+	"mem": {{ app_mem }},
+	"instances": {{ app_instances }},
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "nginx:latest",
+			"network": "BRIDGE",
+			"portMappings": [
+				{
+					"containerPort": {{ nginx_port}},
+					"hostPort": 0,
+					"protocol": "tcp"
+				}
+			]
+		}
+	},
+	"healthChecks": [{
+	    "portIndex": 0,
+	    "protocol": "TCP",
+	    "gracePeriodSeconds": 300,
+	    "intervalSeconds": 60,
+	    "timeoutSeconds": 20,
+	    "maxConsecutiveFailures": 0
+  }]
+}
