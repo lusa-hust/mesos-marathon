@@ -1,9 +1,12 @@
 - name: create json body
-	template: src={{ template_file }} dest=/var/tmp/nginx.json
+  template:
+    src={{ template_file }}
+    dest=/var/tmp/nginx.json
 
 - name: Kick off marathon app
-	url={{ marathon_url }}/v2/apps/{{ app_id }}?force=true
-	method=PUT
+  uri:
+    url={{ marathon_url }}/v2/apps/{{ app_id }}?force=true
+    method=PUT
     body='{{ lookup("file", "/var/tmp/nginx.json") }}'
     body_format=json
     status_code=200,201,204
