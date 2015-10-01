@@ -3,4 +3,4 @@
 app_cpu: 0.1
 app_mem: 32
 app_instances: 1
-marathon_url: playa-node.com:8080
+marathon_url: http://playa-node.com:8080
