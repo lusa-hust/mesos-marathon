@@ -3,7 +3,7 @@
 - hosts: 127.0.0.1
   connection: local
   vars:
-	- app_id: "/nginx"
-    - template_file: "marathon/nginx.json"
+    app_id: "/nginx"
+    template_file: "marathon/nginx.json"
   tasks:
     - include: marathon/deploy.yml
