@@ -1,5 +1,5 @@
 {
-	"id": {{ app_id }},
+	"id": "{{ app_id }}",
 	"cpu": {{ app_cpu }},
 	"mem": {{ app_mem }},
 	"instances": {{ app_instances }},
