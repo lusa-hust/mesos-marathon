@@ -1,5 +1,5 @@
 ---
-- set_fact: environment_="{% if inventory_file | basename in ['development', 'test', 'staging', 'production'] %}{{ inventory_file | basename }}{% endif %}"
+- set_fact: environment_="{{ inventory_file | basename }}"
 
 - name: Get temp path file
   set_fact:  temp_file=/var/tmp/{{environment_}}_{{app_id}}.json
