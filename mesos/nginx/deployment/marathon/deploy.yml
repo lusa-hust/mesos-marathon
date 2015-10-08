@@ -1,12 +1,20 @@
+---
+- set_fact: environment_="{% if inventory_file | basename in ['development', 'test', 'staging', 'production'] %}{{ inventory_file | basename }}{% endif %}"
+
+- name: Get temp path file
+  set_fact:  temp_file=/var/tmp/{{environment_}}_{{app_id}}.json
+
+- debug: msg="{{temp_file}}"
+
 - name: create json body
   template:
     src={{ template_file }}
-    dest=/var/tmp/nginx.json
+    dest={{temp_file}}
 
 - name: Kick off marathon app
   uri:
-    url={{ marathon_url }}/v2/apps/{{ app_id }}?force=true
+    url={{ marathon_url }}/v2/apps/{{environment_}}/{{ app_id }}?force=true
     method=PUT
-    body='{{ lookup("file", "/var/tmp/nginx.json") }}'
+    body='{{ lookup("file", temp_file) }}'
     body_format=json
     status_code=200,201,204
